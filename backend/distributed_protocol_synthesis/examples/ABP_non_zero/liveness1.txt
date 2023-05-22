@@ -1,0 +1,16 @@
+
+// The following accepts executions where a send is not eventually followed
+// by a deliver
+liveness deliver_does_not_follow_send {
+  inputs [send, deliver]
+  outputs []
+  initial ld0
+  accepting [ld1]
+  ld0 send? ld0
+  ld0 deliver? ld0
+  ld0 send? ld1
+  ld1 send? ld1
+  ld1 deliver? ld2
+  ld2 send? ld2
+  ld2 deliver? ld2
+}

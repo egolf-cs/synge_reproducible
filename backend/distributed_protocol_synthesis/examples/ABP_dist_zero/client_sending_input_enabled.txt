@@ -1,0 +1,12 @@
+
+environment SendingClient {
+  inputs [done]
+  outputs [send]
+  initial sc0
+  sc0 send! sc1 strong_fairness
+		// the above strong_fairness constraint is only needed in
+		// order to satisfy infinitely_often_send_input_complete.txt
+  sc1 done? sc0 
+  sc0 done? sc0 // added for input-enabledness
+}
+

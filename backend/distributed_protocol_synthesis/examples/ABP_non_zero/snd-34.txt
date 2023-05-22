@@ -1,0 +1,110 @@
+// re-running the synthesis experiments from scratch
+// we now include input-enabledness to the protocol processes
+// we also include output-fairness for the protocol processes
+
+
+// ENVIRONMENT PROCESSES
+
+include "channels.txt"
+
+forward_channel = channel(p0, p1, p0', p1')
+
+backward_channel = channel(a0, a1, a0', a1')
+
+include "client_sending_input_enabled.txt"
+
+include "client_receiving_without_fairness.txt"
+
+include "timer.txt"
+
+
+// INCOMPLETE PROCESSES FOR SYNTHESIS
+
+process sender {
+  states [s0, s1, s2, s3, s4, s5, s6]
+  perm_states [s3, s4]
+  inputs [send, a0', a1', timeout]
+  input_enabled [send, a0', a1', timeout]
+  outputs [done, p0, p1]
+  initial s0
+
+  // s0 is an "input state"
+  s0 send? s1
+  s0 a0'? s0
+  s0 a1'? s0
+  s0 timeout? s0
+
+  // s1 is an "output state"
+  s1 p0! s2 strong_fairness // SF redundant
+
+  // s2 is an "input state"
+  //s2 a0'? s3
+  s2 a1'? s2
+  s2 timeout? s1
+  s2 send? s2
+
+  // s3 is an "output state":
+  //s3 done! s4 strong_fairness // SF redundant
+
+  // s4 is an "input state"
+  //s4 send? s5
+  //s4 a0'? s4
+  //s4 a1'? s4
+  //s4 timeout? s4
+
+  // s5 is an "output state"
+  s5 p1! s6 strong_fairness // SF redundant
+
+  // s6 is an "input state"
+  //s6 a1'? s7
+  s6 a0'? s6
+  s6 timeout? s5
+  s6 send? s6
+
+  // s7 is an "output state":
+  //s7 done! s0 strong_fairness // SF redundant
+}
+
+process receiver {
+  states [r0, r1, r2, r3, r4, r5]
+  input_states [r0, r3]
+  output_states [r1, r2, r4, r5]
+  inputs [p0', p1']
+  input_enabled [p0', p1']
+  outputs [deliver, a0, a1]
+  initial r0
+
+  // r0 is an "input state"
+  r0 p0'? r1
+  r0 p1'? r5		// incomplete 1
+
+  // r1 is an "output state"
+  r1 deliver! r2 strong_fairness
+
+  // r2 is an "output state"
+  r2 a0! r3 strong_fairness // SF redundant for verif but added for synthesis
+
+  // r3 is an "input state"
+  r3 p1'? r4
+  r3 p0'? r2		// incomplete 2
+
+  // r4 is an "output state"
+  r4 deliver! r5 strong_fairness
+
+  // r5 is an "output state"
+  r5 a1! r0 strong_fairness // SF redundant for verif but added for synthesis
+}
+
+// PROPERTIES
+
+include "safety_monitor.txt"
+
+include "safety_monitor2.txt"
+
+include "liveness1.txt" // [](send -> <> deliver)
+
+include "liveness3.txt" // [](send -> <> done)
+
+// in order to satisfy the property below, you have to enable strong fairness
+// on the Sending Client: client_sending_input_enabled.txt
+include "infinitely_often_send_input_complete.txt"

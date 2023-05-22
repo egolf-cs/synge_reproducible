@@ -1,0 +1,19 @@
+environment database1 {
+    inputs [qry1]
+    outputs [gd1, bd1]
+    initial d0
+    d0 qry1? d1
+    d0 qry1? d2
+    d1 bd1! d0
+    d2 gd1! d0
+}
+
+environment database2 {
+    inputs [qry2]
+    outputs [gd2, bd2]
+    initial d0
+    d0 qry2? d1
+    d0 qry2? d2
+    d1 bd2! d0
+    d2 gd2! d0
+}

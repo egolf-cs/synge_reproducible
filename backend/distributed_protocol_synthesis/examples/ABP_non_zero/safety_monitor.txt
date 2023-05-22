@@ -1,0 +1,14 @@
+
+safety safety_monitor {
+  inputs [send, deliver]
+  outputs []
+  initial sm0
+  accepting [error]
+  sm0 send? sm1
+  sm1 deliver? sm0
+  sm0 deliver? error
+  sm1 send? error
+  error deliver? error
+  error send? error
+}
+

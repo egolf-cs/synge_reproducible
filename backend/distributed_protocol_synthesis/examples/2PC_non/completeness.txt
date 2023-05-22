@@ -1,0 +1,52 @@
+safety completeness {
+    inputs[gd1, gd2, bd1, bd2, ab1, ab2, succ]
+    outputs []
+    initial cmp0
+    accepting [error]
+
+    // cmp0
+    cmp0 gd1? cmp1
+    cmp0 gd2? cmp1
+    cmp0 bd1? cmp3
+    cmp0 bd2? cmp3
+    cmp0 ab1? cmp0
+    cmp0 ab2? cmp0
+    cmp0 succ? cmp0
+
+    // cmp1
+    cmp1 gd1? cmp2
+    cmp1 gd2? cmp2
+    cmp1 bd1? cmp0
+    cmp1 bd2? cmp0
+    cmp1 ab1? cmp1
+    cmp1 ab2? cmp1
+    cmp1 succ? cmp1
+
+    // cmp2
+    cmp2 gd1? cmp2
+    cmp2 gd2? cmp2
+    cmp2 bd1? cmp2
+    cmp2 bd2? cmp2
+    cmp2 ab1? error
+    cmp2 ab2? error
+    cmp2 succ? cmp0
+
+    // cmp3
+    cmp3 gd1? cmp0
+    cmp3 gd2? cmp0
+    cmp3 bd1? cmp0
+    cmp3 bd2? cmp0
+    cmp3 ab1? cmp3
+    cmp3 ab2? cmp3
+    cmp3 succ? cmp3
+
+    // error
+    error gd1? error
+    error gd2? error
+    error bd1? error
+    error bd2? error
+    error ab1? error
+    error ab2? error
+    error succ? error
+
+}

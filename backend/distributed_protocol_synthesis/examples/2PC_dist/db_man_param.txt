@@ -1,0 +1,38 @@
+process database_manager(xi, qry, gd, bd, yes, no, ab, cm) {
+    states [b0, b1, b2, b3, b4, b5]
+    inputs [xi, gd, bd, ab, cm]
+    input_enabled [xi, gd, bd, ab, cm]
+    outputs [qry, yes, no]
+    initial b0
+
+    // b0 is an input state
+    b0 xi? b1
+    b0 gd? b0
+    b0 bd? b0
+    b0 ab? b0
+    b0 cm? b0
+
+    // b1 is an output state
+    b1 qry! b2
+
+    // b2 is an input state
+    b2 xi? b2
+    b2 gd? b4
+    b2 bd? b3
+    b2 ab? b2
+    b2 cm? b2
+
+    // b3 is an output state
+    b3 no! b5
+
+    // b4 is an output state
+    b4 yes! b5
+
+    // b5 is an input state
+    b5 xi? b5
+    b5 gd? b5
+    b5 bd? b5
+    b5 ab? b0
+    b5 cm? b0
+
+}

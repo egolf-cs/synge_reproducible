@@ -1,0 +1,9 @@
+environment database(qry, gd, bd) {
+    inputs [qry]
+    outputs [gd, bd]
+    initial d0
+    d0 qry? d1
+    d0 qry? d2
+    d1 bd! d0
+    d2 gd! d0
+}

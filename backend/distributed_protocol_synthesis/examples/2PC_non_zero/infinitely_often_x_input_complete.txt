@@ -1,0 +1,86 @@
+liveness finite_x {
+  inputs [x, x1, x2, qry1, qry2, gd1, gd2, bd1, bd2, yes1, yes2, no1, no2, cm1, cm2, ab1, ab2, succ, fail]
+  outputs []
+  initial q0
+  accepting [q1]
+
+  q0 x? q0
+  q0 x1? q0
+  q0 x2? q0
+  q0 qry1? q0
+  q0 qry2? q0
+  q0 gd1? q0
+  q0 gd2? q0
+  q0 bd1? q0
+  q0 bd2? q0
+  q0 yes1? q0
+  q0 yes2? q0
+  q0 no1? q0
+  q0 no2? q0
+  q0 cm1? q0
+  q0 cm2? q0
+  q0 ab1? q0
+  q0 ab2? q0
+  q0 succ? q0
+  q0 fail? q0
+
+  q0 x? q1
+  q0 x1? q1
+  q0 x2? q1
+  q0 qry1? q1
+  q0 qry2? q1
+  q0 gd1? q1
+  q0 gd2? q1
+  q0 bd1? q1
+  q0 bd2? q1
+  q0 yes1? q1
+  q0 yes2? q1
+  q0 no1? q1
+  q0 no2? q1
+  q0 cm1? q1
+  q0 cm2? q1
+  q0 ab1? q1
+  q0 ab2? q1
+  q0 succ? q1
+  q0 fail? q1
+
+  q1 x1? q1
+  q1 x2? q1
+  q1 qry1? q1
+  q1 qry2? q1
+  q1 gd1? q1
+  q1 gd2? q1
+  q1 bd1? q1
+  q1 bd2? q1
+  q1 yes1? q1
+  q1 yes2? q1
+  q1 no1? q1
+  q1 no2? q1
+  q1 cm1? q1
+  q1 cm2? q1
+  q1 ab1? q1
+  q1 ab2? q1
+  q1 succ? q1
+  q1 fail? q1
+
+  q1 x? q2
+
+  q2 x1? q2
+  q2 x2? q2
+  q2 qry1? q2
+  q2 qry2? q2
+  q2 gd1? q2
+  q2 gd2? q2
+  q2 bd1? q2
+  q2 bd2? q2
+  q2 yes1? q2
+  q2 yes2? q2
+  q2 no1? q2
+  q2 no2? q2
+  q2 cm1? q2
+  q2 cm2? q2
+  q2 ab1? q2
+  q2 ab2? q2
+  q2 succ? q2
+  q2 fail? q2
+}

@@ -1,0 +1,16 @@
+
+// The following accepts executions where a send is not eventually followed
+// by a done
+liveness done_does_not_follow_send {
+  inputs [send, done]
+  outputs []
+  initial ld0
+  accepting [ld1]
+  ld0 send? ld0
+  ld0 done? ld0
+  ld0 send? ld1
+  ld1 send? ld1
+  ld1 done? ld2
+  ld2 send? ld2
+  ld2 done? ld2
+}

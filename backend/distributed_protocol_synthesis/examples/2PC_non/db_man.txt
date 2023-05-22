@@ -1,0 +1,75 @@
+process database_manage1 {
+    states [b0, b1, b2, b3, b4, b5]
+    inputs [x1, gd1, bd1, ab1, cm1]
+    input_enabled [x1, gd1, bd1, ab1, cm1]
+    outputs [qry1, yes1, no1]
+    initial b0
+
+    // b0 is an input state
+    b0 x1? b1
+    b0 gd1? b0
+    b0 bd1? b0
+    b0 ab1? b0
+    b0 cm1? b0
+
+    // b1 is an output state
+    b1 qry1! b2
+
+    // b2 is an input state
+    b2 x1? b2
+    b2 gd1? b4
+    b2 bd1? b3
+    b2 ab1? b2
+    b2 cm1? b2
+
+    // b3 is an output state
+    b3 no1! b5
+
+    // b4 is an output state
+    b4 yes1! b5
+
+    // b5 is an input state
+    b5 x1? b5
+    b5 gd1? b5
+    b5 bd1? b5
+    b5 ab1? b0
+    b5 cm1? b0
+}
+
+process database_manager2 {
+    states [b0, b1, b2, b3, b4, b5]
+    inputs [x2, gd2, bd2, ab2, cm2]
+    input_enabled [x2, gd2, bd2, ab2, cm2]
+    outputs [qry2, yes2, no2]
+    initial b0
+
+    // b0 is an input state
+    b0 x2? b1
+    b0 gd2? b0
+    b0 bd2? b0
+    b0 ab2? b0
+    b0 cm2? b0
+
+    // b1 is an output state
+    b1 qry2! b2
+
+    // b2 is an input state
+    b2 x2? b2
+    b2 gd2? b4
+    b2 bd2? b3
+    b2 ab2? b2
+    b2 cm2? b2
+
+    // b3 is an output state
+    b3 no2! b5
+
+    // b4 is an output state
+    b4 yes2! b5
+
+    // b5 is an input state
+    b5 x2? b5
+    b5 gd2? b5
+    b5 bd2? b5
+    b5 ab2? b0
+    b5 cm2? b0
+}

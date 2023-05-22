@@ -1,0 +1,21 @@
+safety soundness(bad, reset, bad2) {
+    inputs [bad, reset, bad2]
+    outputs []
+    initial s0
+    accepting [error]
+
+    //s0
+    s0 bad? s1
+    s0 reset? s0
+    s0 bad2? s0
+
+    //s1
+    s1 bad? s1
+    s1 reset? s0
+    s1 bad2? error
+
+    //error
+    error bad? error
+    error reset? error
+    error bad2? error
+}

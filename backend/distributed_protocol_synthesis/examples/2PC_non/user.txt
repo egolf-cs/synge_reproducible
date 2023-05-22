@@ -1,0 +1,8 @@
+environment user {
+    inputs [succ, fail]
+    outputs [x]
+    initial u0
+    u0 x! u1
+    u1 succ? u0
+    u1 fail? u0
+}

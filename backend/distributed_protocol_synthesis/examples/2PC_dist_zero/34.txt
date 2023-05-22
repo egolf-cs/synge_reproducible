@@ -1,0 +1,85 @@
+// ENVIRONMENT PROCESSES
+
+include "user.txt"
+include "data.txt"
+
+// INCOMPLETE PROCESSES FOR SYNTHESIS
+
+process transaction_manager {
+    states [m0, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10]
+    perm_states [m3, m4]
+    //output_states [m5, m6, m7, m9, m10, m11]
+    inputs [x, yes1, yes2, no1, no2]
+    input_enabled [x, yes1, yes2, no1, no2]
+    outputs [x1, x2, cm1, cm2, ab1, ab2, succ, fail]
+    initial m0
+
+    // m0 is an input state
+    m0 x? m1
+    m0 yes1? m0
+    m0 yes2? m0
+    m0 no1? m0
+    m0 no2? m0
+
+    // m1 is an output state
+    m1 x1! m2
+
+    // m2 is an input state
+    //m2 x2! m3
+
+    // m3 is an input state
+    //m3 x? m3
+    //m3 yes1? m4
+    //m3 yes2? m4
+    //m3 no1? m8
+    //m3 no2? m8
+
+    // m4 is an input state
+    //m4 x? m4
+    //m4 yes1? m5
+    //m4 yes2? m5
+    //m4 no1? m9
+    //m4 no2? m9
+
+    // m5 is an output state
+    m5 cm1! m6
+
+    // m6 is an output state
+    m6 cm2! m7
+
+    // m7 is an output state
+    m7 succ! m0
+
+    // m8 is an input state
+    m8 x? m8
+    m8 yes1? m9
+    m8 yes2? m9
+    m8 no1? m9
+    m8 no2? m9
+
+    // m9 is an output state
+    m9 ab1! m10
+
+    // m10 is an output state
+    //m10 ab2! m11
+}
+
+include "db_man.txt"
+
+// PROPERTIES
+
+include "ordering.txt"
+order_init_prep = order5a(x, gd1, gd2, bd1, bd2)
+order_prep_trig = order8(gd1, gd2, bd1, bd2, cm1, cm2, ab1, ab2)
+order_trig_end = order6b(cm1, cm2, ab1, ab2, succ, fail)
+order_init_end = order3a(x, succ, fail)
+
+include "soundness.txt"
+local_soundnes1 = soundness(bd1, ab1, cm1)
+local_soundness2 = soundness(bd2, ab2, cm2)
+global_soundnes1 = soundness(bd1, fail, cm2)
+global_soundness2 = soundness(bd2, fail, cm1)
+
+include "completeness.txt"
+
+include "infinitely_often_x_input_complete.txt"
