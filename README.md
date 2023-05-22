@@ -12,7 +12,7 @@ The repository has two purposes, each captured in its own script file.
 * Running experiments
 * Tabulating results
 
-Additionally, a frozen version of the results, as they appear in the paper, is provided in **folder**.
+Additionally, a frozen version of the raw data for the results as they appear in the paper is provided in **folder**.
 
 ## Running Experiments
 
