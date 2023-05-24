@@ -17,6 +17,9 @@ class Engine:
         self.start_time = start_time
         self.max_iter = None
         self.interrupt = False
+        
+        self.iter = 0
+        self.sol = 0
 
     def keep_going(self, iter):
         now = time.time()
@@ -28,23 +31,21 @@ class Engine:
         return b1 and b2 and (not b3)
 
     def generator(self):
-        iter = 0
-        sol = 0
         if self.max_iter is not None:
             print(f"WARN: limiting to {self.max_iter} iterations")
-        while self.keep_going(iter):
+        while self.keep_going(self.iter):
             is_empty, cand = self._pick()
-            iter += 1
+            self.iter += 1
             if is_empty:
                 break
             cand_correct, gen = self._generalize(cand)
             if cand_correct:
-                sol += 1
+                self.sol += 1
                 self._emit(self._id, "generator", "solution", cand)
                 yield cand
             self._prune(gen)
-        self._emit(self._id, "generator", "total iteration", iter)
-        self._emit(self._id, "generator", "num solutions", sol)
+        self._emit(self._id, "generator", "total iteration", self.iter)
+        self._emit(self._id, "generator", "num solutions", self.sol)
 
     
     def _pick(self):

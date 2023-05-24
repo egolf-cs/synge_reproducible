@@ -6,7 +6,7 @@ import time
 class BasicLogger:
 
     def __init__(self, logger_id, emit_content=True) -> None:
-        self.data_dir = f"{Path(__file__).parent}/logs/{logger_id}"
+        self.data_dir = f"logs/{logger_id}"
         Path(self.data_dir).mkdir(parents=True, exist_ok=True)
         self.files = {}
         self.emit_content = emit_content

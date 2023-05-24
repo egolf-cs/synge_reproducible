@@ -5,8 +5,6 @@ y = os.path.dirname(x)
 y = os.path.dirname(y)
 sys.path.append(y)
 
-
-
 from solvers.z3 import Z3Solver
 from synge.engine import Engine
 from universes.u1 import U1
@@ -16,9 +14,9 @@ from generalizers.g_perm import G_perm
 from generalizers.g_naive import G_naive
 
 def synthesize(
-        p, solver_type, solutions_file, seed, print_dead_annotation, L,
+        p, solver_type, seed, L,
         start_time,
-        snb=False, snb_messages=[], all=False, automata=None, fname=None):
+        snb=False, snb_messages=[], all=False, automata=None):
 
     solver = Z3Solver(random_seed=seed)
     L.emit_content = True
@@ -57,9 +55,9 @@ def synthesize(
     result = []
     for solution in eng.generator():
         result.append(solution)
-        print("Solution: ", solution)
+        # print("Solution: ", solution)
         if not all:
             eng.interrupt = True
             # print("interrupting after first solution")
-    return result
+    return result, eng.iter
 

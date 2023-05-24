@@ -6,14 +6,3 @@ If a production build is made available a link will be added here.
 This README assumes familiarity with the paper. In particular, we will reference Tables 1-6 of the paper and the results of Section 5 (Implementation and Evaluation) more generally.
 
 arXiv version of the paper: **link**
-
-The repository has two purposes, each captured in its own script file.
-
-* Running experiments
-* Tabulating results
-
-Additionally, a frozen version of the raw data for the results as they appear in the paper is provided in **folder**.
-
-## Running Experiments
-
-## Tabulating results
