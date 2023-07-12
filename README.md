@@ -20,15 +20,21 @@ From the top-level directory, run
 `backend/distributed_protocol_synthesis/tool.py entry [-h] [-seed SEED] <table_num> <case_study> <states> <algorithm>`
 
 positional arguments:
+
   table_num   A number 1-6 corresponding to a table from the paper.
+
   case_study  2PC | ABP
+
   states      A string of digits corresponding to the states in the A column
               of the table. E.g. if case_study=ABP, then states=12
               correspondes to the row with header ABP;{s1,s2}
+
   algorithm   unopt | dead | naive | perm
 
 optional arguments:
+
   -h, --help  show this help message and exit
+  
   -seed SEED  This is specified if and only if the table number is 2 or 5.
               seed must be a value in 0..9. The entry reported in the table is
               an average of the times returned using all 10 of these seeds.
