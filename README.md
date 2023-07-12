@@ -41,6 +41,15 @@ per the following description of the arguments.
               seed must be a value in 0..9. The entry reported in the table is
               an average of the times returned using all 10 of these seeds.
 
+### Example Usage
+
+1. `python backend/distributed_protocol_synthesis/tool.py entry -seed 0 2 ABP 12 unopt`
+2. `python backend/distributed_protocol_synthesis/tool.py entry 1 2PC 234 perm`
+
+In case 1., the tool will reproduce one of the datapoints (the one where seed=0) of Table 2, row ABP;{s1,s2}. The tool may then be run additionally for seeds 1..9 and the times averaged to reproduce all results for that row. Again, the seed must be specified when reproducing results from Tables 2 or 5.
+
+In case 2., the tool will reproduce the results of Table 1, row 2PC;{p2,p3,p4}.
+
 ## Expectations
 
 Refer to the Tables for expected runtime. 
