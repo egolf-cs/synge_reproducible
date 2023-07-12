@@ -188,7 +188,7 @@ def main():
     entry_parser.add_argument(
         'states',
         help=("A string of digits corresponding to the states in the A column of the table."
-              "E.g. if case_study=ABP, then states=12 correspondes to the row whose header is ABP;{s1,s2}"
+              " E.g. if case_study=ABP, then states=12 correspondes to the row with header ABP;{s1,s2}"
         )
     )
     entry_parser.add_argument(
@@ -199,9 +199,9 @@ def main():
         '-seed', type=int, default=None,
         help=(
             "This is specified if and only if the table number is 2 or 5." 
-            "seed must be a value in 0..9."
-            "The entry reported in the table is an average of the times" 
-            "returned using all 10 of these seeds."
+            " seed must be a value in 0..9."
+            " The entry reported in the table is an average of the times" 
+            " returned using all 10 of these seeds."
         )
     )
     entry_parser.set_defaults(func=mk_entry)
