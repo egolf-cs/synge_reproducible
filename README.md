@@ -1,4 +1,4 @@
-# synge_reproducible
+# Reproducible Distributed Protocol Synthesis Results
 A repository capable of reproducing the results of the paper "Synthesis of Distributed Protocols by Enumeration Modulo Isomorphisms."
 This code is still in development and it is not intended to be used for purposes other than reproducing the results of the paper.
 If a production build is made available a link will be added here.
