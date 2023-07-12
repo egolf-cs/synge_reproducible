@@ -40,3 +40,12 @@ per the following description of the arguments.
   **-seed SEED** --- This is specified if and only if the table number is 2 or 5.
               seed must be a value in 0..9. The entry reported in the table is
               an average of the times returned using all 10 of these seeds.
+
+## Expectations
+
+Refer to the Tables for expected runtime. 
+E.g., if you're running the command with table_num=1, case_study=ABP, states=12, algorithm=unopt, then the tool should terminate in about 20 seconds,
+but if instead states=4567 the tool should terminate in 4 hours after timing out.
+Bear in mind that the times reported in Tables 2 and 5 are averages, so the runtime may be lower or higher depending on the seed chosen.
+
+Upon termination the tool will print the results to the screen as one line: `num_solution=...   num_iterations=...  elapsed_time=...`
